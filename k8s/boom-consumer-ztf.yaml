@@ -18,7 +18,8 @@ spec:
     spec:
       containers:
         - name: consumer-ztf
-          image: ghcr.io/keshavmajithia/boom:latest
+          image: ghcr.io/boom-astro/boom-filter-sandbox:latest
+          imagePullPolicy: Always
           command: ["/app/kafka_consumer", "ztf", "--topics-override", "ztf_20260408_programid1"]
           env:
             - name: BOOM_DATABASE__PASSWORD

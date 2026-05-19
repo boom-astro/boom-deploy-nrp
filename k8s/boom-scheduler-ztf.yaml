@@ -18,7 +18,8 @@ spec:
     spec:
       containers:
         - name: scheduler-ztf
-          image: ghcr.io/keshavmajithia/boom:latest
+          image: ghcr.io/boom-astro/boom-filter-sandbox:latest
+          imagePullPolicy: Always
           command: ["/app/scheduler", "ztf"]
           env:
             - name: BOOM_DATABASE__PASSWORD

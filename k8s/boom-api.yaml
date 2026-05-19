@@ -18,7 +18,8 @@ spec:
     spec:
       containers:
         - name: boom-api
-          image: ghcr.io/keshavmajithia/boom:latest
+          image: ghcr.io/boom-astro/boom-filter-sandbox:latest
+          imagePullPolicy: Always
           command: ["/app/boom-api"]
           ports:
             - containerPort: 4000

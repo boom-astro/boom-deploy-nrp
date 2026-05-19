@@ -59,7 +59,8 @@ spec:
             memory: "512Mi"
       containers:
       - name: producer
-        image: ghcr.io/keshavmajithia/boom:latest
+        image: ghcr.io/boom-astro/boom-filter-sandbox:latest
+        imagePullPolicy: Always
         command: ["/app/kafka_producer"]
         args: ["ztf", "20260408", "public", "--server-url", "broker:29092"]
         resources:
@@ -139,7 +140,8 @@ spec:
             memory: "512Mi"
       containers:
       - name: producer
-        image: ghcr.io/keshavmajithia/boom:latest
+        image: ghcr.io/boom-astro/boom-filter-sandbox:latest
+        imagePullPolicy: Always
         command: ["/app/kafka_producer"]
         args: ["ztf", "20260409", "public", "--server-url", "broker:29092"]
         resources:
