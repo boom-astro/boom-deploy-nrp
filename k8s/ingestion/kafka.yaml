@@ -1,6 +1,3 @@
-##############################################
-# Kafka (KRaft mode) StatefulSet + PVC + Service
-##############################################
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -147,9 +144,6 @@ spec:
       targetPort: 9092
   clusterIP: None
 ---
-##############################################
-# Kafka ACL Init Job (runs once after Kafka starts)
-##############################################
 apiVersion: batch/v1
 kind: Job
 metadata:

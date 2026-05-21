@@ -1,6 +1,3 @@
-##############################################
-# BOOM Scheduler ZTF — Deployment
-##############################################
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,6 +18,9 @@ spec:
           image: ghcr.io/boom-astro/boom-filter-sandbox:latest
           imagePullPolicy: Always
           command: ["/app/scheduler", "ztf"]
+          # All non-secret config comes from the `boom-config` ConfigMap.
+          # The env vars below are only the ones not already covered by it
+          # (secrets, OTel endpoint).
           env:
             - name: BOOM_DATABASE__PASSWORD
               valueFrom:
@@ -37,14 +37,6 @@ spec:
                 secretKeyRef:
                   name: boom-secrets
                   key: BOOM_API__AUTH__ADMIN_PASSWORD
-            - name: BOOM_DATABASE__HOST
-              value: "mongo"
-            - name: BOOM_DATABASE__USERNAME
-              value: "mongoadmin"
-            - name: BOOM_REDIS__HOST
-              value: "valkey"
-            - name: BOOM_BABAMUL__ENABLED
-              value: "false"
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: "http://otel-collector:4317"
           volumeMounts:

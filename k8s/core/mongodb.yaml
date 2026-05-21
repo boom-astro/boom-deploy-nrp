@@ -1,6 +1,3 @@
-##############################################
-# MongoDB StatefulSet + Service
-##############################################
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:

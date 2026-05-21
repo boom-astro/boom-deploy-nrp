@@ -1,6 +1,3 @@
-##############################################
-# Grafana — Deployment + PVC + Service + Ingress
-##############################################
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:

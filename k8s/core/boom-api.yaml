@@ -1,6 +1,3 @@
-##############################################
-# BOOM API — Deployment + Service + Ingress
-##############################################
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -23,6 +20,9 @@ spec:
           command: ["/app/boom-api"]
           ports:
             - containerPort: 4000
+          # All non-secret config comes from the `boom-config` ConfigMap mounted
+          # at /app/config.yaml. The env vars below are only the ones the binary
+          # actually reads in addition to that file (secrets, OTel endpoint).
           env:
             - name: BOOM_DATABASE__PASSWORD
               valueFrom:
@@ -39,20 +39,10 @@ spec:
                 secretKeyRef:
                   name: boom-secrets
                   key: BOOM_API__AUTH__ADMIN_PASSWORD
-            - name: BOOM_DATABASE__HOST
-              value: "mongo"
-            - name: BOOM_DATABASE__USERNAME
-              value: "mongoadmin"
-            - name: BOOM_REDIS__HOST
-              value: "valkey"
-            - name: BOOM_API__PORT
-              value: "4000"
-            - name: BOOM_BABAMUL__ENABLED
-              value: "false"
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: "http://otel-collector:4317"
           volumeMounts:
-            - name: boom-config
+            - name: boom-api-config
               mountPath: /app/config.yaml
               subPath: config.yaml
               readOnly: true
@@ -74,9 +64,9 @@ spec:
             initialDelaySeconds: 30
             periodSeconds: 30
       volumes:
-        - name: boom-config
+        - name: boom-api-config
           configMap:
-            name: boom-config
+            name: boom-api-config
 ---
 apiVersion: v1
 kind: Service

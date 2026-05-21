@@ -1,6 +1,3 @@
-##############################################
-# ZTF Ingestion Job - April 8, 2026
-##############################################
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -79,9 +76,6 @@ spec:
       - name: temp-storage
         emptyDir: {}
 ---
-##############################################
-# ZTF Ingestion Job - April 9, 2026
-##############################################
 apiVersion: batch/v1
 kind: Job
 metadata:

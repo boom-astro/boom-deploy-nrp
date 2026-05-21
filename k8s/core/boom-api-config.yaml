@@ -1,0 +1,47 @@
+# Minimal config for the boom-api binary only.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: boom-api-config
+  namespace: umn-babamul
+data:
+  config.yaml: |
+    database:
+      host: mongo
+      port: 27017
+      name: boom
+      max_pool_size: 200
+      replica_set: null
+      username: mongoadmin
+      password: ""
+      srv: false
+    cutouts_storage:
+      type: mongo
+      host: mongo
+      port: 27017
+      name: boom
+      max_pool_size: 200
+      replica_set: null
+      username: mongoadmin
+      password: ""
+      srv: false
+    api:
+      domain: "localhost"
+      port: 4000
+      auth:
+        secret_key: ""
+        token_expiration: 604800
+        admin_username: admin
+        admin_password: ""
+        admin_email: admin@example.com
+    babamul:
+      enabled: false
+      webapp_url:
+      retention_days: 3
+    # Kafka is structurally required by AppConfig (no serde default).
+    # boom-api only reads kafka.producer.server (for /kafka/* ACL routes and
+    # the /babamul/* routes when babamul.enabled=true).
+    kafka:
+      consumer: {}
+      producer:
+        server: "broker:29092"
