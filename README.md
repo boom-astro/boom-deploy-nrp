@@ -1,6 +1,6 @@
 # BOOM Sandbox NRP Nautilus deployment
 
-This repository contains the Kubernetes deployment manifests and technical documentation for running [**boom-filter-sandbox**](https://github.com/boom-astro/boom-filter-sandbox) (the filter sandbox variant of BOOM) on the [NRP](https://nrp.ai/) cluster.
+This repository contains the Kubernetes deployment manifests and technical documentation for running [boom-filter-sandbox](https://github.com/boom-astro/boom-filter-sandbox) (the filter sandbox variant of BOOM) on the [NRP](https://nrp.ai/) cluster.
 
 > ⚠️ **This deployment intentionally exposes the filter endpoints publicly (unauthenticated).**
 > That is acceptable here only because the instance is isolated and serves public data exclusively.
